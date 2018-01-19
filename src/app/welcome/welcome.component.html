@@ -1,0 +1,22 @@
+<div style="text-align:center">
+  <h1>
+    {{ pageTitle }}!
+  </h1>
+  <img width='100' src="../assets/Images/golfball.png"/>
+  <h2>
+    {{description}}
+  </h2>
+
+  <select *ngFor = 'let course of golfCourses' >
+    <option *ngFor="let c of countries" [ngValue]="c">{{c.name}}</option>{{course}}
+  </select>
+  <select *ngFor = ""></select>
+
+
+  <button mat-button [routerLink] = " ['/table']">Start Game</button>
+
+
+
+</div>
+
+
