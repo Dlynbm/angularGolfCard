@@ -14,6 +14,7 @@ import {
   MatToolbar
 } from '@angular/material';
 import { TableComponent } from './table/table.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { RouterModule, Routes} from '@angular/router';
 import {GolfCourseService} from './golf-course/golf-course-service';
@@ -36,9 +37,11 @@ import { HttpClientModule} from '@angular/common/http';
     MatTableModule,
     MatIconModule,
     MatToolbarModule,
+    MatGridListModule,
     RouterModule.forRoot([
         { path: 'welcome', component: WelcomeComponent},
-        { path: 'table', component: TableComponent}
+        { path: 'table', component: TableComponent},
+        { path: '', pathMatch: 'full', redirectTo: 'welcome'}
       ])
     ],
 

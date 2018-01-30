@@ -4,11 +4,15 @@
 
 button {
   height: 40px;
-  width: 90px;
-  color: red;
+  width: 120px;
+  color: black;
   font-size: 15px;
   border-radius: 5px;
   background-color: lightgrey;
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+
 }
 
 body {
@@ -33,5 +37,6 @@ body {
 
 
 }
+
 
 

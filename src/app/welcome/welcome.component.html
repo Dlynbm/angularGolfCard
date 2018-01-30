@@ -7,16 +7,22 @@
     {{description}}
   </h2>
 
-  <select *ngFor = 'let course of golfCourses' >
-    <option *ngFor="let c of countries" [ngValue]="c">{{c.name}}</option>{{course}}
-  </select>
-  <select *ngFor = ""></select>
+  <mat-form-field>
+    <mat-select  [(ngModel)] = "selected" (change)="getSingleCourse()">
+      <mat-option *ngFor="let course of golfCourses" [value]="course.id" ></mat-option>
+        {{ course.name }}
+    </mat-select>
+  </mat-form-field>
 
 
-  <button mat-button [routerLink] = " ['/table']">Start Game</button>
-
+<mat-form-field *ngIf="golfCourse">
+  <mat-select>
+    <mat-option *ngFor = "let teeType of golfCourse.tee_types" [value]="tee_type">
+    </mat-option>
+  </mat-select>
+</mat-form-field>
 
 
 </div>
-
+<button mat-button [routerLink] = " ['/table']">START GAME</button>
 
