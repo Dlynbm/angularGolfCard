@@ -9,8 +9,10 @@
 
   <mat-form-field>
     <mat-select  [(ngModel)] = "selected" (change)="getSingleCourse()">
-      <mat-option *ngFor="let course of golfCourses" [value]="course.id" ></mat-option>
+      <mat-option *ngFor="let course of golfCourses" [value]="course.id" >
         {{ course.name }}
+      </mat-option>
+
     </mat-select>
   </mat-form-field>
 

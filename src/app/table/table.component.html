@@ -1,10 +1,27 @@
 
 
+<div class = "saying">
+  I love golf.   I live golf.  I dream golf. ... ... ... If only I knew how to golf.
+</div>
+
+<div class="card">
 <div class="example-container mat-elevation-z8">
-  <div class="example-loading-shade"></div>
-    <div class="example-rate-limit-reached">
-      LET'S PLAY GOLF!!
-    </div>
-  </div>
+  <mat-table #table [dataSource]="dataSource">
+
+
+    <ng-container [matColumnDef]="col" *ngFor='let col of displayedColumns'>
+      <mat-header-cell *matHeaderCellDef> {{col | uppercase}}</mat-header-cell>
+      <mat-cell *matCellDef='let scorecard'> {{scorecard[col]}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef = "let score; columns: displayedColumns;"></mat-row>
+
+
+  </mat-table>
+
+
+</div>
+</div>
 
 

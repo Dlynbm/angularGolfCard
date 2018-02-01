@@ -19,12 +19,12 @@ export class WelcomeComponent implements OnInit {
   GolfCourse;
 
 
-  constructor(golfCourseService: GolfCourseService) {
+  constructor(private golfCourseService: GolfCourseService) {
 
   }
 
   ngOnInit() {
-    this.golfCourseService.getGolfCourse().subscribe((golfCourses: ApiReturn) => {
+    this.golfCourseService.getGolfCourses().subscribe((golfCourses: ApiReturn) => {
       this.golfCourses = golfCourses.courses;
       console.log(golfCourses);
     });

@@ -16,7 +16,7 @@ export class GolfCourseService {
   }
 
   getGolfCourses(): Observable<ApiReturn> {
-    return this.httpClient.post<ApiReturn>(`${this.url}`, {
+    return this.httpClient.post<ApiReturn>(`${this.url}/courses`, {
       latitude: 40.396419,
       longitude: -111.9328359,
       radius: 25
