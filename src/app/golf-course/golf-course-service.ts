@@ -14,7 +14,6 @@ export class GolfCourseService {
   url = 'https://golf-courses-api.herokuapp.com';
   constructor(private httpClient: HttpClient) {
   }
-
   getGolfCourses(): Observable<ApiReturn> {
     return this.httpClient.post<ApiReturn>(`${this.url}/courses`, {
       latitude: 40.396419,

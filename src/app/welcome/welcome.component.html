@@ -17,12 +17,20 @@
   </mat-form-field>
 
 
-<mat-form-field *ngIf="golfCourse">
+<!--<mat-form-field *ngIf="golfCourse">
   <mat-select>
     <mat-option *ngFor = "let teeType of golfCourse.tee_types" [value]="tee_type">
     </mat-option>
   </mat-select>
-</mat-form-field>
+</mat-form-field>-->
+
+  <mat-form-field *ngIf="golfCourses">
+    <mat-select  placeholder="Select Tee Type">
+      <mat-option *ngFor="let tee of golfCourses.course.tee_types" (click)="setTeeType(tee.tee_type)" [value]="tee.tee_type">
+        {{tee.tee_type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
 
 </div>

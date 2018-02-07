@@ -17,17 +17,24 @@ export class WelcomeComponent implements OnInit {
   selectedTeeType: any;
   selectedGolfCourse: any;
   GolfCourse;
-
+  teeType;
+  golfData;
 
   constructor(private golfCourseService: GolfCourseService) {
 
   }
 
   ngOnInit() {
-    this.golfCourseService.getGolfCourses().subscribe((golfCourses: ApiReturn) => {
+    this.golfCourseService.getGolfCourses()
+      .subscribe((golfCourses: ApiReturn) => {
       this.golfCourses = golfCourses.courses;
       console.log(golfCourses);
     });
+  }
+
+  setTeeType(tee) {
+    this.teeType = tee;
+    this.golfData.getSetTeeType(tee);
   }
 }
 
