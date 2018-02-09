@@ -4,7 +4,7 @@ import 'hammerjs';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatInputModule, MatSelectModule, MatToolbarModule, MatTableModule, MatIconModule,
+  MatInputModule, MatSelectModule, MatToolbarModule, MatTableModule, MatIconModule, MatCardModule,
   MatToolbar
 } from '@angular/material';
 import {MatGridListModule} from '@angular/material/grid-list';

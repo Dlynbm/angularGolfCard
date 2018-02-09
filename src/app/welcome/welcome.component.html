@@ -1,38 +1,33 @@
-<div style="text-align:center">
-  <h1>
-    {{ pageTitle }}!
-  </h1>
-  <img width='100' src="../assets/Images/golfball.png"/>
-  <h2>
-    {{description}}
-  </h2>
 
-  <mat-form-field>
-    <mat-select  [(ngModel)] = "selected" (change)="getSingleCourse()">
-      <mat-option *ngFor="let course of golfCourses" [value]="course.id" >
-        {{ course.name }}
-      </mat-option>
+  <div style = "text-align:center">
+    <h1>
+      {{pageTitle}}
+    </h1>
 
-    </mat-select>
-  </mat-form-field>
+    <img width = '100' src = '../assets/Images/golfball.png'/>
+    <h2>
+      {{description}}
+    </h2>
 
 
-<!--<mat-form-field *ngIf="golfCourse">
-  <mat-select>
-    <mat-option *ngFor = "let teeType of golfCourse.tee_types" [value]="tee_type">
-    </mat-option>
-  </mat-select>
-</mat-form-field>-->
+      <mat-form-field>
+        <mat-select placeholder="Select Course">
+          <mat-option *ngFor="let course of cardCourses" (click)="setCourse(course)" [value]="course.name">
+            {{course.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-  <mat-form-field *ngIf="golfCourses">
-    <mat-select  placeholder="Select Tee Type">
-      <mat-option *ngFor="let tee of golfCourses.course.tee_types" (click)="setTeeType(tee.tee_type)" [value]="tee.tee_type">
-        {{tee.tee_type}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+
+
+      <mat-form-field *ngIf="selectedCourse">
+        <mat-select  placeholder="Select Tee Type">
+          <mat-option *ngFor="let tee of selectedCourse.course.tee_types" (click)="setTeeType(tee.tee_type)" [value]="tee.tee_type">
+            {{tee.tee_type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
 
 </div>
 <button mat-button [routerLink] = " ['/table']">START GAME</button>
-

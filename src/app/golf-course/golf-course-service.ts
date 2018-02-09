@@ -1,28 +1,45 @@
-import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {GolfCourse} from './golf-course';
+import {HttpClient} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
-import {map} from 'rxjs/operators/map';
-import {ApiReturn} from './api.return';
-
-
 
 @Injectable()
 export class GolfCourseService {
 
-  url = 'https://golf-courses-api.herokuapp.com';
+  private golfUrl = 'https://golf-courses-api.herokuapp.com/courses';
+  private localObj: object = {latitude: 40.4426135, longitude: -111.8631115, radius: 20};
+  private currentCourse;
+  private numOfPlayers: number;
+  private teeType: string;
+
+
   constructor(private httpClient: HttpClient) {
   }
-  getGolfCourses(): Observable<ApiReturn> {
-    return this.httpClient.post<ApiReturn>(`${this.url}/courses`, {
-      latitude: 40.396419,
-      longitude: -111.9328359,
-      radius: 25
-    });
+
+  getGolfData(): Observable<any> {
+    return this.httpClient.post(this.golfUrl, this.localObj);
   }
-  getSelectedCourse(courseId):  Observable<GolfCourse> {
-    return this.httpClient.get<any>( `${this.url}/courses/${courseId}`)
-      .pipe(map( response => response.course));
+
+  setLocation(latitude: number, longitude: number, radius: number): void {
+    this.localObj = {latitude, longitude, radius};
+  }
+
+  setCurrentCourse(course): void {
+    this.currentCourse = course;
+  }
+
+  getCourse(): Observable<any> {
+    return this.httpClient.get(this.golfUrl + '/' + this.currentCourse.id);
+  }
+
+  getCurrentCourse() {
+    return this.currentCourse;
+  }
+
+  getSetTeeType(tee?): string {
+    if (tee) {
+      this.teeType = tee;
+    }
+    return this.teeType;
   }
 }

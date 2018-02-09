@@ -26,7 +26,7 @@ export class TableComponent implements OnInit {
 
 const SCORECARD_DATA: any[] = [
   {
-    'player': 'John',
+    'player': 'text input',
     '1': 0,
     '2': 0,
     '3': 0,

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { GolfCourse} from '../golf-course/golf-course';
-import { GolfCourseService} from '../golf-course/golf-course-service';
-import {ApiReturn} from '../golf-course/api.return';
-
+import {GolfCourseService} from '../golf-course/golf-course-service';
 
 @Component({
   selector: 'app-welcome',
@@ -10,39 +7,38 @@ import {ApiReturn} from '../golf-course/api.return';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit {
-  pageTitle = 'Welcome to your golf card';
-  description = 'Please choose a golf course to begin.';
-  golfCourses: GolfCourse[];
-  selected = 0;
-  selectedTeeType: any;
-  selectedGolfCourse: any;
-  GolfCourse;
+
+  golfObject;
+  pageTitle = 'Welcome to your golf card!';
+  description = 'Please choose a golf course to begin';
+  cardCourses;
+  selectedCourse;
   teeType;
-  golfData;
 
-  constructor(private golfCourseService: GolfCourseService) {
-
+  constructor(private golfData: GolfCourseService) {
   }
 
   ngOnInit() {
-    this.golfCourseService.getGolfCourses()
-      .subscribe((golfCourses: ApiReturn) => {
-      this.golfCourses = golfCourses.courses;
-      console.log(golfCourses);
+    this.golfObject = this.golfData.getGolfData().subscribe(data => {
+      this.golfObject = data;
+      this.cardCourses = this.golfObject.courses;
     });
+
   }
 
+  setCourse(course) {
+    this.golfData.setCurrentCourse(course);
+    this.golfData.getCourse().subscribe(p => {
+      this.selectedCourse = p;
+      this.golfData.setCurrentCourse(p);
+      console.log(this.selectedCourse);
+    });
+    this.pageTitle = course.name;
+
+  }
   setTeeType(tee) {
     this.teeType = tee;
     this.golfData.getSetTeeType(tee);
   }
+
 }
-
-//   runThis(courseId: Observable<GolfCourse> {
-//   return this.golfCourseService.getcourse(this.selected).subscribe(next(golfCourses:GolfCourse) => {
-//     console.log(golfCourses);
-//     this.golfCourse = golfCourse;
-//
-// });
-
-
