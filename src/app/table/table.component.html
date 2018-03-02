@@ -10,11 +10,14 @@
 
 
     <ng-container [matColumnDef]="col" *ngFor='let col of displayedColumns'>
-      <mat-header-cell *matHeaderCellDef> {{col | uppercase}}</mat-header-cell>
-      <mat-cell *matCellDef='let scorecard'> {{scorecard[col]}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef>{{col | uppercase}}</mat-header-cell>
+      <mat-cell *matCellDef="let scorecard"><div>{{scorecard[col]}}</div></mat-cell>
     </ng-container>
 
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
     <mat-row *matRowDef = "let score; columns: displayedColumns;"></mat-row>
 
 

@@ -21,7 +21,7 @@
 
 
       <mat-form-field *ngIf="selectedCourse">
-        <mat-select  placeholder="Select Tee Type">
+        <mat-select  placeholder= "Select Tee Type" [(ngModel)] = "tee" >
           <mat-option *ngFor="let tee of selectedCourse.course.tee_types" (click)="setTeeType(tee.tee_type)" [value]="tee.tee_type">
             {{tee.tee_type}}
           </mat-option>
@@ -30,4 +30,4 @@
 
 
 </div>
-<button mat-button [routerLink] = " ['/table']">START GAME</button>
+<button mat-button [routerLink]="['/table']">START GAME</button>

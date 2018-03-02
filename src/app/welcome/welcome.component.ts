@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GolfCourseService} from '../golf-course/golf-course-service';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-welcome',
@@ -14,6 +15,9 @@ export class WelcomeComponent implements OnInit {
   cardCourses;
   selectedCourse;
   teeType;
+  course: string;
+  tee: string;
+  courseRetrieved: Subscription;
 
   constructor(private golfData: GolfCourseService) {
   }
@@ -23,16 +27,19 @@ export class WelcomeComponent implements OnInit {
       this.golfObject = data;
       this.cardCourses = this.golfObject.courses;
     });
+    this.courseRetrieved = this.golfData.courseChanged.subscribe(result => {
+      this.selectedCourse = result;
+    });
 
   }
 
   setCourse(course) {
     this.golfData.setCurrentCourse(course);
-    this.golfData.getCourse().subscribe(p => {
-      this.selectedCourse = p;
-      this.golfData.setCurrentCourse(p);
-      console.log(this.selectedCourse);
-    });
+//    this.golfData.getCourse().subscribe(p => {
+//      this.selectedCourse = p;
+//      this.golfData.setCurrentCourse(p);
+//      console.log(this.selectedCourse);
+//    });
     this.pageTitle = course.name;
 
   }
@@ -40,5 +47,8 @@ export class WelcomeComponent implements OnInit {
     this.teeType = tee;
     this.golfData.getSetTeeType(tee);
   }
-
+   onclick() {
+    console.log(this.tee);
+    console.log('onclick');
+   }
 }
