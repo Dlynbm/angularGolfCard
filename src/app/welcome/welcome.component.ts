@@ -34,6 +34,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   setCourse(course) {
+    console.log('setCourse');
     this.golfData.setCurrentCourse(course);
 //    this.golfData.getCourse().subscribe(p => {
 //      this.selectedCourse = p;

@@ -19,15 +19,23 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log('ngOnInit');
 //    this.course = this.GolfData.getCourse();
-    this.courseReceived = this.GolfData.courseChanged.subscribe(result => this.course = result);
+    this.courseReceived = this.GolfData.courseChanged.subscribe(result => {
+      this.course = result;
+      this.populateData();
+    });
     console.log(this.GolfData.currentCourse);
     console.log(this.GolfData.teeType);
+    if (this.GolfData.courseData) {
+      this.populateData();
+    }
   }
   ngOnDestroy() {
     this.courseReceived.unsubscribe();
   }
   populateData() {
+    console.log('populateData');
     this.displayedColumns.push('player');
     for (let i = 0; i < 9; i++) {
       const name = 'Hole: ' + `${i + 1}`;
