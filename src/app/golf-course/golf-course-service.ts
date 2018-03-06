@@ -29,8 +29,11 @@ export class GolfCourseService {
 
   setCurrentCourse(course): void {
     this.currentCourse = course;
+    console.log(this.golfUrl + '/' + course.id);
     this.httpClient.get(this.golfUrl + '/' + course.id).subscribe(result => {
+      console.log(result);
       this.courseData = result;
+      console.log(result);
       this.courseChanged.next(result);
     });
   }
@@ -43,7 +46,6 @@ export class GolfCourseService {
     if (tee) {
       this.teeType = tee;
     }
-    console.log('setTeeTypes');
     return this.teeType;
   }
 }

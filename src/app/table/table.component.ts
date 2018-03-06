@@ -9,25 +9,27 @@ import {Subscription} from 'rxjs/';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = [];
+  displayedColumns: string [] = [];
   dataSource = new MatTableDataSource<any>(SCORECARD_DATA);
-  eighteenHoles = true;
+  eighteenHoles = false;
   course;
   courseReceived: Subscription;
+  columnTitles: any[] = [];
 
-  constructor(private GolfData: GolfCourseService) {
+  constructor(public GolfData: GolfCourseService) {
   }
 
   ngOnInit() {
     console.log('ngOnInit');
 //    this.course = this.GolfData.getCourse();
     this.courseReceived = this.GolfData.courseChanged.subscribe(result => {
+      console.log(result);
       this.course = result;
       this.populateData();
     });
-    console.log(this.GolfData.currentCourse);
-    console.log(this.GolfData.teeType);
+    console.log(this.GolfData.courseData);
     if (this.GolfData.courseData) {
+      this.course = this.GolfData.courseData;
       this.populateData();
     }
   }
@@ -36,19 +38,36 @@ export class TableComponent implements OnInit, OnDestroy {
   }
   populateData() {
     console.log('populateData');
+    console.log(this.course);
     this.displayedColumns.push('player');
-    for (let i = 0; i < 9; i++) {
-      const name = 'Hole: ' + `${i + 1}`;
-      this.displayedColumns.push(name);
+    const holes = this.course.course.holes;
+    let hole;
+    for (let i = 1; i < 10; i++) {
+  //    const name1 = 'Hole: ' + `${i + 1}`;
+      this.displayedColumns.push(i.toString());
+      hole = holes[i - 1];
+      const tee_box = hole.tee_boxes.find(b => b.tee_type === this.GolfData.teeType);
+      this.columnTitles.push(
+        {
+          hole: hole.hole_num,
+          par: tee_box.par,
+          hcp: tee_box.hcp,
+          yards: tee_box.yards,
+          name: this.displayedColumns[i]
+        }
+      );
+      console.log(this.columnTitles[i - 1]);
     }
     if (this.eighteenHoles) {
-      this.displayedColumns.push('Out');
-      for (let i = 10; i < 18; i++ ) {
-        const name = 'Hole: ' + `${i + 1}`;
+      this.displayedColumns.push('out');
+      for (let i = 10; i < 19; i++ ) {
+//        const name2 = 'Hole: ' + `${i + 1}`;
+        this.displayedColumns.push(i.toString());
       }
-      this.displayedColumns.push('In');
+      this.displayedColumns.push('in');
     }
     this.displayedColumns.push('total');
+    console.log(this.displayedColumns);
   }
 }
 

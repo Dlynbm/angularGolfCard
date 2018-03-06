@@ -8,14 +8,32 @@
 <div class="example-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource">
 
-
-    <ng-container [matColumnDef]="col" *ngFor='let col of displayedColumns'>
-      <mat-header-cell *matHeaderCellDef>{{col | uppercase}}</mat-header-cell>
+    <ng-container matColumnDef="player">
+      <mat-header-cell *matHeaderCellDef>
+        Player
+      </mat-header-cell>
       <mat-cell *matCellDef="let scorecard"><div>{{scorecard[col]}}</div></mat-cell>
     </ng-container>
 
+    <ng-container [matColumnDef]="col.name" *ngFor='let col of columnTitles'>
+      <mat-header-cell *matHeaderCellDef>
+        <div>
+          Hole: {{col.hole}}<br/>
+          Par: {{col.par}}<br/>
+          Hcp: {{col.hcp}}<br/>
+          Yards: {{col.yards}}
+        </div>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let scorecard"><div>{{scorecard[col]}}</div></mat-cell>
+    </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <ng-container matColumnDef="total">
+      <mat-header-cell *matHeaderCellDef>
+        Player
+      </mat-header-cell>
+      <mat-cell *matCellDef="let scorecard"><div>{{scorecard[col]}}</div></mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
     <mat-row *matRowDef = "let score; columns: displayedColumns;"></mat-row>
