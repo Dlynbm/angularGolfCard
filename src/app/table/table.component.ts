@@ -42,7 +42,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this.displayedColumns.push('player');
     const holes = this.course.course.holes;
     let hole;
-    for (let i = 1; i < 10; i++) {
+    for (let i = 1; i <= holes.length; i++) {
   //    const name1 = 'Hole: ' + `${i + 1}`;
       this.displayedColumns.push(i.toString());
       hole = holes[i - 1];

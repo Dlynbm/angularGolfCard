@@ -55,6 +55,20 @@ body {
   text-align: center;
 }
 
+.example-container {
+  display: flex;
+  flex-direction: column;
+  max-height: 500px;
+  min-width: 500px;
+
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+
 
 
 
