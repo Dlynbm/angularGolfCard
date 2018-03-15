@@ -69,7 +69,26 @@ body {
 }
 
 
+.tablerow{
+  border: black;
+}
 
+.hole {
+  background-color: pink;
+  font-size:15px;
+}
+
+.par {
+  background-color: lightblue;
+}
+
+.hcp {
+  background-color: lightgreen;
+}
+
+.yards{
+  background-color: lightsalmon;
+}
 
 
 

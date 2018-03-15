@@ -10,7 +10,7 @@
 
     <ng-container matColumnDef="player">
       <mat-header-cell *matHeaderCellDef>
-        Player
+        <h2>Player</h2>
       </mat-header-cell>
       <mat-cell *matCellDef="let scorecard"><div>{{scorecard[col]}}</div></mat-cell>
     </ng-container>
@@ -18,21 +18,30 @@
     <ng-container [matColumnDef]="col.name" *ngFor='let col of columnTitles'>
       <mat-header-cell *matHeaderCellDef>
         <div>
-          Hole: {{col.hole}}<br/>
-          Par: {{col.par}}<br/>
-          Hcp: {{col.hcp}}<br/>
-          Yards: {{col.yards}}
+          <div class="hole">Hole: {{col.hole}}<br/></div>
+          <div class ="par">Par: {{col.par}}<br/></div>
+          <div class = "hcp">Hcp: {{col.hcp}}<br/></div>
+          <div class = "yards">Yards: {{col.yards}}</div>
+        </div>
+
+        <div class = "tablerow">
+          <h4> Score</h4>
+          <input type = "number" value="0">
         </div>
       </mat-header-cell>
+
+
       <mat-cell *matCellDef="let scorecard"><div>{{scorecard[col]}}</div></mat-cell>
+
     </ng-container>
 
     <ng-container matColumnDef="total">
       <mat-header-cell *matHeaderCellDef>
-        Total
+        <h2>Total</h2>
       </mat-header-cell>
       <mat-cell *matCellDef="let scorecard"><div>{{scorecard[col]}}</div></mat-cell>
     </ng-container>
+
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
